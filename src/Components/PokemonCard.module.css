@@ -4,8 +4,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 7%;
-    height: 270px;
-    width: 250px;
+    min-height: 270px;
+    max-width: 270px;
     margin-top: 10px;
     margin-inline: auto;
     text-transform: capitalize;
@@ -13,7 +13,7 @@
 
 .card .sprite {
     scale: 1.7;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .card .list {
@@ -22,6 +22,6 @@
 }
 
 .card .name {
-    fontweight: bold;
-    font-size: 2rem;
+    font-weight: bold;
+    font-size: 2.5rem;
 }

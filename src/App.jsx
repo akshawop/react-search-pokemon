@@ -1,7 +1,7 @@
 import "./App.css";
 import { useRef, useState, useEffect } from "react";
 import PokemonCard from "./Components/PokemonCard.jsx";
-import fetchData from "./scripts/fetchData.js";
+import fetchPokemonData from "./scripts/fetchPokemonData.js";
 import fetchPokemonTypes from "./scripts/fetchPokemonTypes.js";
 
 function App() {
@@ -15,10 +15,10 @@ function App() {
     const handleClick = async () => {
         let data;
         try {
-            data = await fetchData(inputRef.current.value);
+            data = await fetchPokemonData(inputRef.current.value);
         } catch (err) {}
         if (!data) {
-            data = await fetchData("pikachu");
+            data = await fetchPokemonData("pikachu");
         }
         const pokemonTypes = await fetchPokemonTypes();
         allTypesRef.current = pokemonTypes;
@@ -38,7 +38,7 @@ function App() {
 
     return (
         <>
-            <input ref={inputRef} type="text" placeholder="Pokèmon Name Here" />
+            <input ref={inputRef} type="text" placeholder="Search Pokèmon" />
             <button onClick={() => handleClick()}>Fetch Pokèmon</button>
             <PokemonCard
                 name={name}

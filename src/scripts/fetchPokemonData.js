@@ -1,4 +1,4 @@
-async function fetchData(name) {
+async function fetchPokemonData(name) {
     try {
         const response = await fetch(
             `https://pokeapi.co/api/v2/pokemon/${name ? name : "pikachu"}`
@@ -14,4 +14,4 @@ async function fetchData(name) {
     }
 }
 
-export default fetchData;
+export default fetchPokemonData;
