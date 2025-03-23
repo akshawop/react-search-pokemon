@@ -16,8 +16,25 @@ function PokemonCard(props) {
                     {props.name}
                 </li>
                 <li>
-                    Types: &nbsp;
-                    {props.types.map(String).join(", ")}
+                    Type: &nbsp;
+                    {props.types.map((type, index) => {
+                        const color = pokemonTypes[type].title || {
+                            title: "#FFF"
+                        };
+                        return (
+                            <span key={index}>
+                                <span
+                                    style={{
+                                        color: color,
+                                        textTransform: "capitalize"
+                                    }}
+                                >
+                                    {type}
+                                </span>
+                                {index != props.types.length - 1 ? ", " : null}
+                            </span>
+                        );
+                    })}
                 </li>
             </ul>
         </div>
