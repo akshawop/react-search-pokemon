@@ -16,7 +16,9 @@ function App() {
         let data;
         try {
             data = await fetchPokemonData(inputRef.current.value);
-        } catch (err) {}
+        } catch (err) {
+            console.log(`An error occured: ${err}`);
+        }
         if (!data) {
             data = await fetchPokemonData("pikachu");
         }
