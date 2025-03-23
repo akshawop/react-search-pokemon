@@ -1,0 +1,15 @@
+*,
+*::after,
+*::before {
+    margin: 0, auto;
+    box-sizing: border-box;
+    font-family: poppins, arial, sans-serif;
+    text-align: center;
+}
+body {
+    height: 80vh;
+}
+
+ul {
+    list-style-type: none;
+}
