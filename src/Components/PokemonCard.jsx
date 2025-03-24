@@ -5,8 +5,12 @@ function PokemonCard(props) {
     const { bg, title } = pokemonTypes[type] || { bg: "#000", title: "#FFF" };
 
     return (
-        <div className={styles.card} style={{ background: bg }}>
+        <div
+            className={styles.card}
+            style={{ background: bg, display: props.displayProp }}
+        >
             <img
+                loading="lazy"
                 className={styles.sprite}
                 src={props.sprite}
                 alt="pokemon image"
