@@ -46,7 +46,8 @@ function App() {
 
     return (
         <>
-            <input ref={inputRef} type="text" placeholder="Search Pokèmon" /><br/>
+            <input ref={inputRef} type="text" placeholder="Search Pokèmon" />
+            <br />
             <button onClick={() => handleClick()}>Fetch Pokèmon</button>
             <>
                 {isLoading ? <LoadingScreen /> : null}
