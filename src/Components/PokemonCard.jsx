@@ -7,7 +7,7 @@ function PokemonCard(props) {
     return (
         <div
             className={styles.card}
-            style={{ background: bg, display: props.displayProp }}
+            style={{ background: bg}}
         >
             <img
                 loading="lazy"

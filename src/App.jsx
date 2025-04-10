@@ -1,9 +1,11 @@
 import "./App.css";
 import { useRef, useState, useEffect } from "react";
+import SearchBar from "./Components/SearchBar.jsx";
 import PokemonCard from "./Components/PokemonCard.jsx";
+import LoadingScreen from "./Components/LoadingScreen.jsx";
 import fetchPokemonData from "./scripts/fetchPokemonData.js";
 import fetchPokemonTypes from "./scripts/fetchPokemonTypes.js";
-import LoadingScreen from "./Components/LoadingScreen.jsx";
+import fetchAllPokemonNames from "./scripts/fetchAllPokemonNames.js";
 
 function App() {
     const inputRef = useRef(null);
@@ -35,29 +37,40 @@ function App() {
         });
         typesRef.current = typesArray;
 
-        spriteRef.current = data.sprites.front_default;
+        spriteRef.current =
+            data.sprites.other["official-artwork"].front_default;
 
         setName(data.name);
 
         setTimeout(() => setIsLoading(false), 3000);
     };
 
-    useEffect(() => handleClick, []);
+    const names = useRef([]);
+
+    async function fillInNames() {
+        names.current = await fetchAllPokemonNames();
+    }
+
+    useEffect(() => {
+        handleClick();
+        fillInNames();
+    }, []);
 
     return (
         <>
-            <input ref={inputRef} type="text" placeholder="Search Pokèmon" />
+            <SearchBar ref={inputRef} names={names.current} />
             <br />
             <button onClick={() => handleClick()}>Fetch Pokèmon</button>
             <>
-                {isLoading ? <LoadingScreen /> : null}
-                <PokemonCard
-                    displayProp={isLoading ? "none" : "flex"}
-                    name={name}
-                    types={typesRef.current}
-                    sprite={spriteRef.current}
-                    allTypes={allTypesRef.current}
-                />
+                {isLoading && <LoadingScreen />}
+                {!isLoading && (
+                    <PokemonCard
+                        name={name}
+                        types={typesRef.current}
+                        sprite={spriteRef.current}
+                        allTypes={allTypesRef.current}
+                    />
+                )}
             </>
         </>
     );
