@@ -1,6 +1,6 @@
 async function fetchPokemonTypes() {
     try {
-        const response = await fetch("/pokemonTypes.json");
+        const response = await fetch("pokemonTypes.json");
         if (!response.ok) {
             throw new Error("Cannot fetch data...");
         }
